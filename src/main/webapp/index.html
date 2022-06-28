@@ -11,6 +11,21 @@
     <title>Celsius to Fahrenheit</title>
 </head>
 <body>
-    
+    <header>
+        <h1>Conversão de Temperatura</h1>
+    </header>
+
+    <main>
+        <section>
+            <form action="converter" method="get">
+                <input type="text" name="valor" class="entradas" id="valorTemperatura">
+                <select name="conversao" class="entradas" id="conversaoDropbox">
+                    <option value="fiat">Celsius para Fahrenheit</option>
+                    <option value="audi">Fahrenheit para Celsius</option>
+                </select>
+                <input type="submit" value="Converter" class="botao">
+            </form>
+        </section>
+    </main>
 </body>
 </html>
