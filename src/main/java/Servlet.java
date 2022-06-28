@@ -1,6 +1,8 @@
 
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,17 +18,31 @@ public class Servlet extends HttpServlet {
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+				
+		PrintWriter out = response.getWriter();
 		String tipo = request.getParameter("conversao");
 		String valor = request.getParameter("valor");
+		String fraseResult = null;
 		double resultado = 0;
-		
-		if(tipo.equalsIgnoreCase("celsius"))
+	
+		if(tipo.equalsIgnoreCase("celsius")) {
 			resultado = CelsiusToFahrenheit(valor);
-		else
+			fraseResult ="A conversão de "+ valor +" graus Celsius para Fahrenheit é de: " + resultado;	
+		}
+		else {
 			resultado = FahrenheitToCelsius(valor);
+			fraseResult ="A conversão de "+ valor +" graus Fahrenheit para Celsius é de: " + resultado;
+		}
 		
-		System.out.println(resultado);
+		out.print("<html>");
+		out.print("<head>");
+		out.print("<link rel=\"stylesheet\" href=\"style.css\">");
+		out.print("<title>Resultado da Conversão</title>");
+		out.print("</head>");
+		out.print("<body>");
+		out.print("<h1>" + fraseResult + "</h1>");
+		out.print("</body>");
+		out.print("</html>");
 	}
 	
 	private double CelsiusToFahrenheit(String valor) {
